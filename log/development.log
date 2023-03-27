@@ -489,3 +489,9 @@ Unsubscribing from channel: {"channel":"Turbo::StreamsChannel","signed_stream_na
 Turbo::StreamsChannel stopped streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
 Turbo::StreamsChannel is transmitting the subscription confirmation
 Turbo::StreamsChannel is streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Started GET "/cable" for 127.0.0.1 at 2023-03-27 19:13:52 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 19:13:53 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: keep-alive, Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
