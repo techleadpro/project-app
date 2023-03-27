@@ -1,0 +1,537 @@
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "action_text_rich_texts"[0m
+  [1m[35m (143.9ms)[0m  [1m[35mCREATE TABLE "action_text_rich_texts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "body" text, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (152.7ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_action_text_rich_texts_uniqueness" ON "action_text_rich_texts" ("record_type", "record_id", "name")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments"[0m
+  [1m[35m (148.6ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (143.1ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (142.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs"[0m
+  [1m[35m (128.4ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (100.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records"[0m
+  [1m[35m (112.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" bigint NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (133.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments"[0m
+  [1m[35m (149.3ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "project_id" integer NOT NULL, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (132.1ms)[0m  [1m[35mCREATE INDEX "index_comments_on_project_id" ON "comments" ("project_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "projects"[0m
+  [1m[35m (140.0ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "completion_status" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aactive_storage_attachments" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aactive_storage_attachments_uniqueness" ON "aactive_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE INDEX "tindex_aactive_storage_attachments_on_blob_id" ON "aactive_storage_attachments" ("blob_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "aactive_storage_attachments" ("id","name","record_type","record_id","blob_id","created_at")
+                     SELECT "id","name","record_type","record_id","blob_id","created_at" FROM "active_storage_attachments"[0m
+  [1m[35m (30.9ms)[0m  [1m[35mDROP TABLE "active_storage_attachments"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer NOT NULL PRIMARY KEY, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("id","name","record_type","record_id","blob_id","created_at")
+                     SELECT "id","name","record_type","record_id","blob_id","created_at" FROM "aactive_storage_attachments"[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE "aactive_storage_attachments"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (93.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aactive_storage_variant_records" ("id" integer NOT NULL PRIMARY KEY, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "tindex_aactive_storage_variant_records_uniqueness" ON "aactive_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "aactive_storage_variant_records" ("id","blob_id","variation_digest")
+                     SELECT "id","blob_id","variation_digest" FROM "active_storage_variant_records"[0m
+  [1m[35m (4.4ms)[0m  [1m[35mDROP TABLE "active_storage_variant_records"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer NOT NULL PRIMARY KEY, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "active_storage_variant_records" ("id","blob_id","variation_digest")
+                     SELECT "id","blob_id","variation_digest" FROM "aactive_storage_variant_records"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "aactive_storage_variant_records"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (116.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TEMPORARY TABLE "acomments" ("id" integer NOT NULL PRIMARY KEY, "project_id" integer NOT NULL, "description" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "tindex_acomments_on_project_id" ON "acomments" ("project_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "acomments" ("id","project_id","description","created_at","updated_at")
+                     SELECT "id","project_id","description","created_at","updated_at" FROM "comments"[0m
+  [1m[35m (6.7ms)[0m  [1m[35mDROP TABLE "comments"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer NOT NULL PRIMARY KEY, "project_id" integer NOT NULL, "description" text DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_8e3f130030"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_comments_on_project_id" ON "comments" ("project_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "comments" ("id","project_id","description","created_at","updated_at")
+                     SELECT "id","project_id","description","created_at","updated_at" FROM "acomments"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "acomments"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (92.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (109.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (126.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20230327150704)[0m
+  [1m[35m (85.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20230327145136),
+(20230327145732),
+(20230327145733);
+
+[0m
+  [1m[35m (137.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (9.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2023-03-27 15:47:04.636039"], ["updated_at", "2023-03-27 15:47:04.636039"]]
+  [1m[36mTRANSACTION (90.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (6.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "4ea11ff018a2323a21e0b9d1d470c70ed9060065"], ["created_at", "2023-03-27 15:47:04.764028"], ["updated_at", "2023-03-27 15:47:04.764028"]]
+  [1m[36mTRANSACTION (81.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (8.0ms)[0m  [1m[31mDELETE FROM "action_text_rich_texts";
+DELETE FROM "comments";
+DELETE FROM "projects";
+INSERT INTO "comments" ("id", "project_id", "description", "created_at", "updated_at") VALUES (980190962, 980190962, 'MyText', '2023-03-27 15:47:06.312385', '2023-03-27 15:47:06.312385');
+INSERT INTO "comments" ("id", "project_id", "description", "created_at", "updated_at") VALUES (298486374, 298486374, 'MyText', '2023-03-27 15:47:06.312385', '2023-03-27 15:47:06.312385');
+INSERT INTO "projects" ("id", "title", "completion_status", "created_at", "updated_at") VALUES (980190962, 'MyString', 0, '2023-03-27 15:47:06.331733', '2023-03-27 15:47:06.331733');
+INSERT INTO "projects" ("id", "title", "completion_status", "created_at", "updated_at") VALUES (298486374, 'MyString', 0, '2023-03-27 15:47:06.331733', '2023-03-27 15:47:06.331733')[0m
+  [1m[36mTRANSACTION (104.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------
+CommentsMailerTest: test_submitted
+----------------------------------
+CommentsMailer#submitted: processed outbound mail in 582.4ms
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------
+ProjectsControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[36mProject Load (1.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 17:47:07 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  [1m[36mComment Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 298486374]]
+  Rendered projects/_project.html.erb (Duration: 56.5ms | Allocations: 5616)
+  [1m[36mComment Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered projects/_project.html.erb (Duration: 9.5ms | Allocations: 445)
+  Rendered projects/index.html.erb within layouts/application (Duration: 114.0ms | Allocations: 7887)
+  Rendered layout layouts/application.html.erb (Duration: 3104.3ms | Allocations: 104837)
+Completed 200 OK in 3149ms (Views: 3124.6ms | ActiveRecord: 2.4ms | Allocations: 108292)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+ProjectsControllerTest: test_should_create_project
+--------------------------------------------------
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mProject Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+Started POST "/projects" for 127.0.0.1 at 2023-03-27 17:47:11 +0200
+Processing by ProjectsController#create as HTML
+  Parameters: {"project"=>{"completion_status"=>"false", "title"=>"MyString"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mProject Create (3.6ms)[0m  [1m[32mINSERT INTO "projects" ("title", "completion_status", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "MyString"], ["completion_status", 0], ["created_at", "2023-03-27 15:47:11.111359"], ["updated_at", "2023-03-27 15:47:11.111359"]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/projects/980190963
+Completed 302 Found in 25ms (ActiveRecord: 4.6ms | Allocations: 1558)
+  [1m[36mProject Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------
+ProjectsControllerTest: test_should_show_project
+------------------------------------------------
+  [1m[36mProject Load (2.0ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:47:11 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered projects/_project.html.erb (Duration: 13.1ms | Allocations: 448)
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 20.2ms | Allocations: 521)
+  Rendered comments/_new.html.erb (Duration: 64.6ms | Allocations: 1737)
+  Rendered projects/_comments.html.erb (Duration: 254.8ms | Allocations: 17706)
+  Rendered projects/show.html.erb within layouts/application (Duration: 282.5ms | Allocations: 18872)
+  Rendered layout layouts/application.html.erb (Duration: 298.1ms | Allocations: 20319)
+Completed 200 OK in 316ms (Views: 301.3ms | ActiveRecord: 2.1ms | Allocations: 21044)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------
+ProjectsControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/new" for 127.0.0.1 at 2023-03-27 17:47:11 +0200
+Processing by ProjectsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/new.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 95.1ms | Allocations: 2651)
+  Rendered projects/new.html.erb within layouts/application (Duration: 115.3ms | Allocations: 2991)
+  Rendered layout layouts/application.html.erb (Duration: 148.1ms | Allocations: 4449)
+Completed 200 OK in 182ms (Views: 158.5ms | ActiveRecord: 0.0ms | Allocations: 4901)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+ProjectsControllerTest: test_should_update_project
+--------------------------------------------------
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:47:11 +0200
+Processing by ProjectsController#update as HTML
+  Parameters: {"project"=>{"completion_status"=>"false", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/projects/980190962
+Completed 302 Found in 21ms (ActiveRecord: 0.5ms | Allocations: 839)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------
+ProjectsControllerTest: test_should_destroy_project
+---------------------------------------------------
+  [1m[36mProject Load (1.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mProject Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+Started DELETE "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:47:11 +0200
+Processing by ProjectsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mProject Destroy (27.0ms)[0m  [1m[31mDELETE FROM "projects" WHERE "projects"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 29.3ms | Allocations: 736)
+ProjectsControllerTest - test_should_destroy_project: ActiveRecord::InvalidForeignKey raised.
+If you expected this exception, use `assert_raises` as near to the code that raises as possible.
+Other block based assertions (e.g. `assert_difference`) can be used, as long as `assert_raises` is inside their block.
+
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+ProjectsControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/980190962/edit" for 127.0.0.1 at 2023-03-27 17:47:11 +0200
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering projects/edit.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 22.7ms | Allocations: 914)
+  Rendered projects/edit.html.erb within layouts/application (Duration: 29.2ms | Allocations: 1228)
+  Rendered layout layouts/application.html.erb (Duration: 48.2ms | Allocations: 2610)
+Completed 200 OK in 65ms (Views: 54.7ms | ActiveRecord: 0.6ms | Allocations: 3108)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (13.4ms)[0m  [1m[31mDELETE FROM "action_text_rich_texts";
+DELETE FROM "comments";
+DELETE FROM "projects";
+INSERT INTO "comments" ("id", "project_id", "description", "created_at", "updated_at") VALUES (980190962, 980190962, 'MyText', '2023-03-27 15:52:40.897565', '2023-03-27 15:52:40.897565');
+INSERT INTO "comments" ("id", "project_id", "description", "created_at", "updated_at") VALUES (298486374, 298486374, 'MyText', '2023-03-27 15:52:40.897565', '2023-03-27 15:52:40.897565');
+INSERT INTO "projects" ("id", "title", "completion_status", "created_at", "updated_at") VALUES (980190962, 'MyString', 0, '2023-03-27 15:52:40.914459', '2023-03-27 15:52:40.914459');
+INSERT INTO "projects" ("id", "title", "completion_status", "created_at", "updated_at") VALUES (298486374, 'MyString', 0, '2023-03-27 15:52:40.914459', '2023-03-27 15:52:40.914459')[0m
+  [1m[36mTRANSACTION (108.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------
+CommentsMailerTest: test_submitted
+----------------------------------
+CommentsMailer#submitted: processed outbound mail in 547.1ms
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------
+ProjectsControllerTest: test_should_destroy_project
+---------------------------------------------------
+  [1m[36mProject Load (1.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mProject Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+Started DELETE "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:52:41 +0200
+Processing by ProjectsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  [1m[36mComment Destroy (4.5ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mProject Destroy (1.7ms)[0m  [1m[31mDELETE FROM "projects" WHERE "projects"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActionCable] Broadcasting to Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvOTgwMTkwOTYy: "<turbo-stream action=\"remove\" target=\"comment_980190962\"></turbo-stream>"
+Redirected to http://www.example.com/projects
+Completed 302 Found in 456ms (ActiveRecord: 7.9ms | Allocations: 24358)
+  [1m[36mProject Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------
+ProjectsControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 17:52:42 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  [1m[36mComment Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 298486374]]
+  Rendered projects/_project.html.erb (Duration: 92.6ms | Allocations: 1834)
+  [1m[36mComment Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered projects/_project.html.erb (Duration: 8.3ms | Allocations: 383)
+  Rendered projects/index.html.erb within layouts/application (Duration: 120.6ms | Allocations: 3832)
+  Rendered layout layouts/application.html.erb (Duration: 528.0ms | Allocations: 41343)
+Completed 200 OK in 569ms (Views: 545.6ms | ActiveRecord: 2.2ms | Allocations: 44620)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+ProjectsControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/980190962/edit" for 127.0.0.1 at 2023-03-27 17:52:43 +0200
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering projects/edit.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 32.4ms | Allocations: 2945)
+  Rendered projects/edit.html.erb within layouts/application (Duration: 38.1ms | Allocations: 3326)
+  Rendered layout layouts/application.html.erb (Duration: 47.8ms | Allocations: 4773)
+Completed 200 OK in 68ms (Views: 51.3ms | ActiveRecord: 0.5ms | Allocations: 5299)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------
+ProjectsControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/new" for 127.0.0.1 at 2023-03-27 17:52:43 +0200
+Processing by ProjectsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/new.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 11.9ms | Allocations: 860)
+  Rendered projects/new.html.erb within layouts/application (Duration: 17.1ms | Allocations: 1125)
+  Rendered layout layouts/application.html.erb (Duration: 33.3ms | Allocations: 2516)
+Completed 200 OK in 48ms (Views: 39.7ms | ActiveRecord: 0.0ms | Allocations: 2963)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+ProjectsControllerTest: test_should_create_project
+--------------------------------------------------
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mProject Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+Started POST "/projects" for 127.0.0.1 at 2023-03-27 17:52:43 +0200
+Processing by ProjectsController#create as HTML
+  Parameters: {"project"=>{"completion_status"=>"false", "title"=>"MyString"}}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mProject Create (9.1ms)[0m  [1m[32mINSERT INTO "projects" ("title", "completion_status", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "MyString"], ["completion_status", 0], ["created_at", "2023-03-27 15:52:43.345368"], ["updated_at", "2023-03-27 15:52:43.345368"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/projects/980190963
+Completed 302 Found in 30ms (ActiveRecord: 9.8ms | Allocations: 1392)
+  [1m[36mProject Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+ProjectsControllerTest: test_should_update_project
+--------------------------------------------------
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:52:43 +0200
+Processing by ProjectsController#update as HTML
+  Parameters: {"project"=>{"completion_status"=>"false", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/projects/980190962
+Completed 302 Found in 14ms (ActiveRecord: 1.1ms | Allocations: 717)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------
+ProjectsControllerTest: test_should_show_project
+------------------------------------------------
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:52:43 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (3.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered projects/_project.html.erb (Duration: 9.6ms | Allocations: 430)
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 4.7ms | Allocations: 386)
+  Rendered comments/_new.html.erb (Duration: 93.2ms | Allocations: 1510)
+  Rendered projects/_comments.html.erb (Duration: 114.4ms | Allocations: 2514)
+  Rendered projects/show.html.erb within layouts/application (Duration: 135.4ms | Allocations: 3828)
+  Rendered layout layouts/application.html.erb (Duration: 144.6ms | Allocations: 5275)
+Completed 200 OK in 159ms (Views: 144.2ms | ActiveRecord: 4.7ms | Allocations: 5828)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (15.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixtures Load (6.5ms)[0m  [1m[31mDELETE FROM "action_text_rich_texts";
+DELETE FROM "comments";
+DELETE FROM "projects";
+INSERT INTO "comments" ("id", "project_id", "description", "created_at", "updated_at") VALUES (980190962, 980190962, 'MyText', '2023-03-27 15:58:42.529905', '2023-03-27 15:58:42.529905');
+INSERT INTO "comments" ("id", "project_id", "description", "created_at", "updated_at") VALUES (298486374, 298486374, 'MyText', '2023-03-27 15:58:42.529905', '2023-03-27 15:58:42.529905');
+INSERT INTO "projects" ("id", "title", "completion_status", "created_at", "updated_at") VALUES (980190962, 'MyString', 0, '2023-03-27 15:58:42.542538', '2023-03-27 15:58:42.542538');
+INSERT INTO "projects" ("id", "title", "completion_status", "created_at", "updated_at") VALUES (298486374, 'MyString', 0, '2023-03-27 15:58:42.542538', '2023-03-27 15:58:42.542538')[0m
+  [1m[36mTRANSACTION (110.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA foreign_key_check[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------
+CommentsMailerTest: test_submitted
+----------------------------------
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/mailer.html.erb
+  Rendering comments_mailer/submitted.html.erb within layouts/mailer
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendered comments/_comment.html.erb (Duration: 33.3ms | Allocations: 1263)
+  Rendered comments_mailer/submitted.html.erb within layouts/mailer (Duration: 180.5ms | Allocations: 19051)
+  Rendered layout layouts/mailer.html.erb (Duration: 184.3ms | Allocations: 19277)
+  Rendering layout layouts/mailer.text.erb
+  Rendering comments_mailer/submitted.text.erb within layouts/mailer
+  Rendered comments_mailer/submitted.text.erb within layouts/mailer (Duration: 3.1ms | Allocations: 145)
+  Rendered layout layouts/mailer.text.erb (Duration: 6.3ms | Allocations: 305)
+CommentsMailer#submitted: processed outbound mail in 841.2ms
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+------------------------------------------------
+ProjectsControllerTest: test_should_show_project
+------------------------------------------------
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:58:44 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered projects/_project.html.erb (Duration: 42.1ms | Allocations: 2828)
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 5.8ms | Allocations: 437)
+  Rendered comments/_new.html.erb (Duration: 18.7ms | Allocations: 1807)
+  Rendered projects/_comments.html.erb (Duration: 41.1ms | Allocations: 3132)
+  Rendered projects/show.html.erb within layouts/application (Duration: 134.6ms | Allocations: 7918)
+  Rendered layout layouts/application.html.erb (Duration: 906.8ms | Allocations: 45267)
+Completed 200 OK in 928ms (Views: 915.1ms | ActiveRecord: 2.0ms | Allocations: 46982)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+-------------------------------------------
+ProjectsControllerTest: test_should_get_new
+-------------------------------------------
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/new" for 127.0.0.1 at 2023-03-27 17:58:45 +0200
+Processing by ProjectsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/new.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 65.1ms | Allocations: 2658)
+  Rendered projects/new.html.erb within layouts/application (Duration: 72.8ms | Allocations: 3003)
+  Rendered layout layouts/application.html.erb (Duration: 83.0ms | Allocations: 4461)
+Completed 200 OK in 92ms (Views: 87.3ms | ActiveRecord: 0.0ms | Allocations: 4924)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------
+ProjectsControllerTest: test_should_destroy_project
+---------------------------------------------------
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mProject Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+Started DELETE "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:58:45 +0200
+Processing by ProjectsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  [1m[36mComment Destroy (3.4ms)[0m  [1m[31mDELETE FROM "comments" WHERE "comments"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mProject Destroy (1.7ms)[0m  [1m[31mDELETE FROM "projects" WHERE "projects"."id" = ?[0m  [["id", 980190962]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActionCable] Broadcasting to Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvOTgwMTkwOTYy: "<turbo-stream action=\"remove\" target=\"comment_980190962\"></turbo-stream>"
+Redirected to http://www.example.com/projects
+Completed 302 Found in 180ms (ActiveRecord: 6.5ms | Allocations: 3873)
+  [1m[36mProject Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------
+ProjectsControllerTest: test_should_get_index
+---------------------------------------------
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 17:58:45 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  [1m[36mComment Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 298486374]]
+  Rendered projects/_project.html.erb (Duration: 6.3ms | Allocations: 472)
+  [1m[36mComment Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 980190962]]
+  Rendered projects/_project.html.erb (Duration: 5.7ms | Allocations: 383)
+  Rendered projects/index.html.erb within layouts/application (Duration: 30.6ms | Allocations: 1570)
+  Rendered layout layouts/application.html.erb (Duration: 41.7ms | Allocations: 3022)
+Completed 200 OK in 50ms (Views: 43.4ms | ActiveRecord: 2.1ms | Allocations: 3468)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+ProjectsControllerTest: test_should_get_edit
+--------------------------------------------
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started GET "/projects/980190962/edit" for 127.0.0.1 at 2023-03-27 17:58:45 +0200
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering projects/edit.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 10.7ms | Allocations: 942)
+  Rendered projects/edit.html.erb within layouts/application (Duration: 17.4ms | Allocations: 1227)
+  Rendered layout layouts/application.html.erb (Duration: 30.3ms | Allocations: 2608)
+Completed 200 OK in 41ms (Views: 34.3ms | ActiveRecord: 0.3ms | Allocations: 3069)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+ProjectsControllerTest: test_should_create_project
+--------------------------------------------------
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+  [1m[36mProject Count (5.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+Started POST "/projects" for 127.0.0.1 at 2023-03-27 17:58:45 +0200
+Processing by ProjectsController#create as HTML
+  Parameters: {"project"=>{"completion_status"=>"false", "title"=>"MyString"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mProject Create (9.4ms)[0m  [1m[32mINSERT INTO "projects" ("title", "completion_status", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "MyString"], ["completion_status", 0], ["created_at", "2023-03-27 15:58:45.657518"], ["updated_at", "2023-03-27 15:58:45.657518"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/projects/980190963
+Completed 302 Found in 35ms (ActiveRecord: 10.3ms | Allocations: 1389)
+  [1m[36mProject Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "projects"[0m
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------------
+ProjectsControllerTest: test_should_update_project
+--------------------------------------------------
+  [1m[36mProject Load (0.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Started PATCH "/projects/980190962" for 127.0.0.1 at 2023-03-27 17:58:45 +0200
+Processing by ProjectsController#update as HTML
+  Parameters: {"project"=>{"completion_status"=>"false", "title"=>"MyString"}, "id"=>"980190962"}
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 980190962], ["LIMIT", 1]]
+Redirected to http://www.example.com/projects/980190962
+Completed 302 Found in 26ms (ActiveRecord: 0.5ms | Allocations: 717)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mrollback transaction[0m

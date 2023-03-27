@@ -1,0 +1,21 @@
+<div id="<%= dom_id project %>">
+  <p>
+    <strong>Title:</strong>
+    <%= project.title %>
+  </p>
+
+  <p>
+    <strong>Completion status:</strong>
+    <%= project.completion_status %>
+  </p>
+
+   <p>
+    Posted <%= time_tag project.created_at, "data-local": "time-ago"%>
+  </p>
+
+  <p>
+    <strong><%= pluralize project.comments.count, "comment" %></strong>
+  </p>
+
+
+</div>

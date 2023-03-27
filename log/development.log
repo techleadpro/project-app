@@ -1,0 +1,185 @@
+  [1m[35m (116.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (111.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProjects (20230327145136)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "completion_status" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (3.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230327145136"]]
+  [1m[36mTRANSACTION (92.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-03-27 14:52:33.062804"], ["updated_at", "2023-03-27 14:52:33.062804"]]
+  [1m[36mTRANSACTION (91.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateActiveStorageTables (20230327145732)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" bigint NOT NULL, "variation_digest" varchar NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (3.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230327145732"]]
+  [1m[36mTRANSACTION (182.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActionTextTables (20230327145733)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "action_text_rich_texts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "body" text, "record_type" varchar NOT NULL, "record_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_action_text_rich_texts_uniqueness" ON "action_text_rich_texts" ("record_type", "record_id", "name")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230327145733"]]
+  [1m[36mTRANSACTION (119.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20230327150704)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (14.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "project_id" integer NOT NULL, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_8e3f130030"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_comments_on_project_id" ON "comments" ("project_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (5.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230327150704"]]
+  [1m[36mTRANSACTION (157.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2023-03-27 17:26:11 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (11.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/nielsen/.rvm/gems/ruby-3.0.3/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/nielsen/.rvm/gems/ruby-3.0.3/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 42.6ms | Allocations: 931)
+Completed 200 OK in 274ms (Views: 91.8ms | ActiveRecord: 0.0ms | Allocations: 8009)
+
+
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 17:26:23 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (1.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:6
+  Rendered projects/index.html.erb within layouts/application (Duration: 67.6ms | Allocations: 1594)
+  Rendered layout layouts/application.html.erb (Duration: 4557.8ms | Allocations: 100797)
+Completed 200 OK in 4683ms (Views: 4572.1ms | ActiveRecord: 1.2ms | Allocations: 105336)
+
+
+Started GET "/projects/new" for 127.0.0.1 at 2023-03-27 17:26:33 +0200
+Processing by ProjectsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/new.html.erb within layouts/application
+  Rendered projects/_form.html.erb (Duration: 278.8ms | Allocations: 6036)
+  Rendered projects/new.html.erb within layouts/application (Duration: 290.3ms | Allocations: 6422)
+  Rendered layout layouts/application.html.erb (Duration: 379.4ms | Allocations: 9292)
+Completed 200 OK in 984ms (Views: 385.3ms | ActiveRecord: 5.7ms | Allocations: 27595)
+
+
+Started POST "/projects" for 127.0.0.1 at 2023-03-27 17:27:03 +0200
+Processing by ProjectsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "project"=>{"title"=>"Building house", "completion_status"=>"0"}, "commit"=>"Create Project"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/projects_controller.rb:27:in `block in create'
+  [1m[36mProject Create (3.7ms)[0m  [1m[32mINSERT INTO "projects" ("title", "completion_status", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "Building house"], ["completion_status", 0], ["created_at", "2023-03-27 15:27:03.968304"], ["updated_at", "2023-03-27 15:27:03.968304"]]
+  ↳ app/controllers/projects_controller.rb:27:in `block in create'
+  [1m[36mTRANSACTION (144.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/projects_controller.rb:27:in `block in create'
+Redirected to http://localhost:3000/projects/1
+Completed 302 Found in 214ms (ActiveRecord: 148.3ms | Allocations: 4155)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 17:27:04 +0200
+Processing by ProjectsController#show as TURBO_STREAM
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (3.0ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (4.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 263.3ms | Allocations: 10839)
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 32)
+  Rendered comments/_new.html.erb (Duration: 357.4ms | Allocations: 15513)
+  Rendered projects/_comments.html.erb (Duration: 414.8ms | Allocations: 17394)
+  Rendered projects/show.html.erb within layouts/application (Duration: 739.3ms | Allocations: 29968)
+  Rendered layout layouts/application.html.erb (Duration: 807.7ms | Allocations: 32815)
+Completed 200 OK in 902ms (Views: 815.5ms | ActiveRecord: 13.5ms | Allocations: 35958)
+
+
+Started GET "/projects/" for 127.0.0.1 at 2023-03-27 17:27:30 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:6
+  [1m[36mComment Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 21.0ms | Allocations: 949)
+  Rendered projects/index.html.erb within layouts/application (Duration: 67.1ms | Allocations: 2096)
+  Rendered layout layouts/application.html.erb (Duration: 168.9ms | Allocations: 4847)
+Completed 200 OK in 190ms (Views: 177.0ms | ActiveRecord: 1.9ms | Allocations: 5233)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 17:27:39 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (4.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 14.6ms | Allocations: 835)
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.2ms | Allocations: 17)
+  Rendered comments/_new.html.erb (Duration: 9.1ms | Allocations: 515)
+  Rendered projects/_comments.html.erb (Duration: 28.8ms | Allocations: 1251)
+  Rendered projects/show.html.erb within layouts/application (Duration: 54.3ms | Allocations: 2850)
+  Rendered layout layouts/application.html.erb (Duration: 95.4ms | Allocations: 5581)
+Completed 200 OK in 131ms (Views: 98.8ms | ActiveRecord: 7.0ms | Allocations: 6401)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 17:28:58 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 32.6ms | Allocations: 835)
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 13)
+  Rendered comments/_new.html.erb (Duration: 12.2ms | Allocations: 492)
+  Rendered projects/_comments.html.erb (Duration: 39.0ms | Allocations: 1220)
+  Rendered projects/show.html.erb within layouts/application (Duration: 104.5ms | Allocations: 2824)
+  Rendered layout layouts/application.html.erb (Duration: 166.5ms | Allocations: 5551)
+Completed 200 OK in 213ms (Views: 181.1ms | ActiveRecord: 2.8ms | Allocations: 6344)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 17:36:43 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (4.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 140.5ms | Allocations: 9277)
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.9ms | Allocations: 32)
+  Rendered comments/_new.html.erb (Duration: 161.7ms | Allocations: 15650)
+  Rendered projects/_comments.html.erb (Duration: 203.4ms | Allocations: 17534)
+  Rendered projects/show.html.erb within layouts/application (Duration: 441.2ms | Allocations: 28966)
+  Rendered layout layouts/application.html.erb (Duration: 1447.4ms | Allocations: 68490)
+Completed 200 OK in 1910ms (Views: 1492.7ms | ActiveRecord: 15.6ms | Allocations: 95711)
+
+

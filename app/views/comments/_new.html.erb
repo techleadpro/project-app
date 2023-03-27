@@ -1,0 +1,9 @@
+<%= form_with model: [ project, Comment.new ] do |form| %>
+Your comment:<br>
+<div>
+<%= form.text_area :description, size: "20x5" %>
+</div>
+ <div>
+    <%= form.submit %>
+ </div>
+<% end %>
