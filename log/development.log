@@ -183,3 +183,309 @@ Processing by ProjectsController#show as HTML
 Completed 200 OK in 1910ms (Views: 1492.7ms | ActiveRecord: 15.6ms | Allocations: 95711)
 
 
+Started GET "/posts/1" for 127.0.0.1 at 2023-03-27 18:58:46 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (12.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/posts/1"):
+  
+Started GET "/" for 127.0.0.1 at 2023-03-27 18:59:00 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/nielsen/.rvm/gems/ruby-3.0.3/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/nielsen/.rvm/gems/ruby-3.0.3/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.4ms | Allocations: 494)
+Completed 200 OK in 177ms (Views: 16.8ms | ActiveRecord: 0.0ms | Allocations: 4344)
+
+
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 18:59:06 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (9.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:6
+  [1m[36mComment Count (22.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 370.9ms | Allocations: 10779)
+  Rendered projects/index.html.erb within layouts/application (Duration: 565.3ms | Allocations: 28308)
+  Rendered layout layouts/application.html.erb (Duration: 2814.7ms | Allocations: 68176)
+Completed 200 OK in 2910ms (Views: 2788.3ms | ActiveRecord: 41.4ms | Allocations: 72527)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 18:59:24 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (1.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 13.2ms | Allocations: 1054)
+  [1m[36mComment Load (1.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.4ms | Allocations: 28)
+  Rendered comments/_new.html.erb (Duration: 120.5ms | Allocations: 15597)
+  Rendered projects/_comments.html.erb (Duration: 146.8ms | Allocations: 17457)
+  Rendered projects/show.html.erb within layouts/application (Duration: 265.2ms | Allocations: 23241)
+  Rendered layout layouts/application.html.erb (Duration: 306.7ms | Allocations: 26106)
+Completed 200 OK in 347ms (Views: 307.4ms | ActiveRecord: 6.1ms | Allocations: 28166)
+
+
+Started GET "/cable" for 127.0.0.1 at 2023-03-27 18:59:25 +0200
+Started GET "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 18:59:25 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: keep-alive, Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Started POST "/projects/1/comments" for 127.0.0.1 at 2023-03-27 19:00:21 +0200
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"description"=>""}, "commit"=>"Create Comment", "project_id"=>"1"}
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:14:in `set_project'
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.6ms | Allocations: 2081)
+
+
+  
+NoMethodError (undefined method `comments' for nil:NilClass):
+  
+app/controllers/comments_controller.rb:6:in `create'
+Finished "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 19:00:24 +0200
+Turbo::StreamsChannel stopped streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 19:00:24 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (5.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 103.7ms | Allocations: 1365)
+  [1m[36mComment Load (1.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.3ms | Allocations: 17)
+  Rendered comments/_new.html.erb (Duration: 24.7ms | Allocations: 556)
+  Rendered projects/_comments.html.erb (Duration: 124.4ms | Allocations: 5947)
+  Rendered projects/show.html.erb within layouts/application (Duration: 274.8ms | Allocations: 8429)
+  Rendered layout layouts/application.html.erb (Duration: 469.8ms | Allocations: 14515)
+Completed 200 OK in 609ms (Views: 495.2ms | ActiveRecord: 20.8ms | Allocations: 17482)
+
+
+Started POST "/projects/1/comments" for 127.0.0.1 at 2023-03-27 19:00:32 +0200
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"description"=>"first comment"}, "commit"=>"Create Comment", "project_id"=>"1"}
+  [1m[36mProject Load (1.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:14:in `set_project'
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 1.3ms | Allocations: 1747)
+
+
+  
+NoMethodError (undefined method `comments' for nil:NilClass):
+  
+app/controllers/comments_controller.rb:6:in `create'
+Started GET "/cable" for 127.0.0.1 at 2023-03-27 19:00:34 +0200
+Started GET "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 19:00:34 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: keep-alive, Upgrade, HTTP_UPGRADE: websocket)
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 19:00:59 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:6
+  [1m[36mComment Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 14.9ms | Allocations: 837)
+  Rendered projects/index.html.erb within layouts/application (Duration: 36.6ms | Allocations: 1902)
+  Rendered layout layouts/application.html.erb (Duration: 73.5ms | Allocations: 4654)
+Completed 200 OK in 88ms (Views: 81.7ms | ActiveRecord: 1.9ms | Allocations: 4991)
+
+
+Finished "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 19:01:00 +0200
+Started GET "/projects" for 127.0.0.1 at 2023-03-27 19:01:00 +0200
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:6
+  [1m[36mComment Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 109.1ms | Allocations: 839)
+  Rendered projects/index.html.erb within layouts/application (Duration: 188.2ms | Allocations: 1890)
+  Rendered layout layouts/application.html.erb (Duration: 295.2ms | Allocations: 4643)
+Completed 200 OK in 321ms (Views: 303.1ms | ActiveRecord: 1.9ms | Allocations: 4985)
+
+
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 19:01:04 +0200
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 21.3ms | Allocations: 918)
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.2ms | Allocations: 13)
+  Rendered comments/_new.html.erb (Duration: 10.1ms | Allocations: 492)
+  Rendered projects/_comments.html.erb (Duration: 24.9ms | Allocations: 1220)
+  Rendered projects/show.html.erb within layouts/application (Duration: 66.3ms | Allocations: 2981)
+  Rendered layout layouts/application.html.erb (Duration: 112.4ms | Allocations: 5748)
+Completed 200 OK in 138ms (Views: 118.5ms | ActiveRecord: 2.3ms | Allocations: 6544)
+
+
+Started GET "/cable" for 127.0.0.1 at 2023-03-27 19:01:05 +0200
+Started GET "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 19:01:05 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: keep-alive, Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Started POST "/projects/1/comments" for 127.0.0.1 at 2023-03-27 19:01:13 +0200
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"description"=>"first comment"}, "commit"=>"Create Comment", "project_id"=>"1"}
+  [1m[36mProject Load (0.8ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:14:in `set_project'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.8ms | Allocations: 1734)
+
+
+  
+NoMethodError (undefined method `comments' for nil:NilClass):
+  
+app/controllers/comments_controller.rb:6:in `create'
+Unsubscribing from channel: {"channel":"Turbo::StreamsChannel","signed_stream_name":"IloybGtPaTh2Y0hKdmFtVmpkQzFvYVhOMGIzSjVMMUJ5YjJwbFkzUXZNUSI=--1fa711f1d3184cc7b243f25ef8150fece8b3361e7dc3c2ab2d351144ab9383d8"}
+Turbo::StreamsChannel stopped streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 19:07:36 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (1.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 219.6ms | Allocations: 9348)
+  [1m[36mComment Load (3.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of templates [0 times] (Duration: 0.5ms | Allocations: 32)
+  Rendered comments/_new.html.erb (Duration: 305.6ms | Allocations: 15644)
+  Rendered projects/_comments.html.erb (Duration: 440.7ms | Allocations: 17528)
+  Rendered projects/show.html.erb within layouts/application (Duration: 763.2ms | Allocations: 29866)
+  Rendered layout layouts/application.html.erb (Duration: 2635.5ms | Allocations: 69603)
+Completed 200 OK in 2936ms (Views: 2687.6ms | ActiveRecord: 25.1ms | Allocations: 96856)
+
+
+Started GET "/cable" for 127.0.0.1 at 2023-03-27 19:07:44 +0200
+Started GET "/cable" [WebSocket] for 127.0.0.1 at 2023-03-27 19:07:45 +0200
+Successfully upgraded to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: keep-alive, Upgrade, HTTP_UPGRADE: websocket)
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Started POST "/projects/1/comments" for 127.0.0.1 at 2023-03-27 19:07:53 +0200
+Processing by CommentsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"description"=>"first comment"}, "commit"=>"Create Comment", "project_id"=>"1"}
+  [1m[36mProject Load (1.1ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:14:in `set_project'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+  [1m[36mComment Create (33.4ms)[0m  [1m[32mINSERT INTO "comments" ("project_id", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["project_id", 1], ["description", "first comment"], ["created_at", "2023-03-27 17:07:54.567264"], ["updated_at", "2023-03-27 17:07:54.567264"]]
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (128.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+[ActiveJob] Enqueued Turbo::Streams::ActionBroadcastJob (Job ID: e355f066-7182-46ec-bc01-cdd6e900ada3) to Async(default) with arguments: "Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ", {:action=>:append, :target=>"comments", :targets=>nil, :locals=>{:comment=>#<GlobalID:0x0000564e58455bd0 @uri=#<URI::GID gid://project-history/Comment/1>>}, :partial=>"comments/comment"}
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [e355f066-7182-46ec-bc01-cdd6e900ada3]   [1m[36mComment Load (1.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [e355f066-7182-46ec-bc01-cdd6e900ada3] Performing Turbo::Streams::ActionBroadcastJob (Job ID: e355f066-7182-46ec-bc01-cdd6e900ada3) from Async(default) enqueued at 2023-03-27T17:07:54Z with arguments: "Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ", {:action=>:append, :target=>"comments", :targets=>nil, :locals=>{:comment=>#<GlobalID:0x00007fe40870fed8 @uri=#<URI::GID gid://project-history/Comment/1>>}, :partial=>"comments/comment"}
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [e355f066-7182-46ec-bc01-cdd6e900ada3]   Rendered comments/_comment.html.erb (Duration: 29.4ms | Allocations: 794)
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [e355f066-7182-46ec-bc01-cdd6e900ada3] [ActionCable] Broadcasting to Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ: "<turbo-stream action=\"append\" target=\"comments\"><template><div id=\"comment_1\">\n first comment\n - <time datetime=\"2023-03-27T17:07:54Z\" data-local=\"time-ago\">March 27, 2023 17:07</time>\n</div>\n\n</template></turbo-stream>"
+[ActiveJob] [Turbo::Streams::ActionBroadcastJob] [e355f066-7182-46ec-bc01-cdd6e900ada3] Performed Turbo::Streams::ActionBroadcastJob (Job ID: e355f066-7182-46ec-bc01-cdd6e900ada3) from Async(default) in 313.51ms
+Turbo::StreamsChannel transmitting "<turbo-stream action=\"append\" target=\"comments\"><template><div id=\"comment_1\">\n first comment\n - <time datetime=\"2023-03-27T17:07:54Z\" data-local=\"time-ago\">March 27, 2023 17:07</time>\n</div>\n\n</template></turbo-stream>" (via streamed from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ)
+[ActiveJob] Enqueued ActionMailer::MailDeliveryJob (Job ID: 06078a3b-951a-4af5-ae61-683acc29e65b) to Async(default) with arguments: "CommentsMailer", "submitted", "deliver_now", {:args=>[#<GlobalID:0x00007fe408c79630 @uri=#<URI::GID gid://project-history/Comment/1>>]}
+Redirected to http://localhost:3000/projects/1
+Completed 302 Found in 1709ms (ActiveRecord: 164.4ms | Allocations: 44651)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   [1m[36mComment Load (1.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b] Performing ActionMailer::MailDeliveryJob (Job ID: 06078a3b-951a-4af5-ae61-683acc29e65b) from Async(default) enqueued at 2023-03-27T17:07:55Z with arguments: "CommentsMailer", "submitted", "deliver_now", {:args=>[#<GlobalID:0x00007fe408d47850 @uri=#<URI::GID gid://project-history/Comment/1>>]}
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendering layout layouts/mailer.html.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendering comments_mailer/submitted.html.erb within layouts/mailer
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   [1m[36mProject Load (3.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   ↳ app/views/comments_mailer/submitted.html.erb:1
+Started GET "/projects/1" for 127.0.0.1 at 2023-03-27 19:07:56 +0200
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendered comments/_comment.html.erb (Duration: 19.0ms | Allocations: 386)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendered comments_mailer/submitted.html.erb within layouts/mailer (Duration: 225.4ms | Allocations: 3065)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendered layout layouts/mailer.html.erb (Duration: 237.2ms | Allocations: 3333)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendering layout layouts/mailer.text.erb
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendering comments_mailer/submitted.text.erb within layouts/mailer
+Processing by ProjectsController#show as TURBO_STREAM
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendered comments_mailer/submitted.text.erb within layouts/mailer (Duration: 43.3ms | Allocations: 625)
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (1.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b]   Rendered layout layouts/mailer.text.erb (Duration: 306.8ms | Allocations: 1067)
+  ↳ app/controllers/projects_controller.rb:63:in `set_project'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mComment Count (4.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_project.html.erb:17
+  Rendered projects/_project.html.erb (Duration: 76.4ms | Allocations: 1677)
+  [1m[36mComment Load (1.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/_comments.html.erb:5
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 53.2ms | Allocations: 515)
+  Rendered comments/_new.html.erb (Duration: 23.0ms | Allocations: 565)
+  Rendered projects/_comments.html.erb (Duration: 187.9ms | Allocations: 2949)
+  Rendered projects/show.html.erb within layouts/application (Duration: 749.2ms | Allocations: 5687)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b] CommentsMailer#submitted: processed outbound mail in 2802.3ms
+  Rendered layout layouts/application.html.erb (Duration: 1109.4ms | Allocations: 15305)
+Completed 200 OK in 2112ms (Views: 1256.0ms | ActiveRecord: 7.6ms | Allocations: 17590)
+
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b] Delivered mail 6421cd6fa479_2d0161a82f1@nielsen.mail (1171.9ms)
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b] Date: Mon, 27 Mar 2023 19:07:59 +0200
+From: from@example.com
+To: blog-owner@example.org
+Message-ID: <6421cd6fa479_2d0161a82f1@nielsen.mail>
+Subject: New comment!
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_6421cd6eab34e_2d0161a8151";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_6421cd6eab34e_2d0161a8151
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+You got a new comment on Building house: first comment
+
+
+----==_mimepart_6421cd6eab34e_2d0161a8151
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>You got a new comment on Building house</h1>
+<div id="comment_1">
+ first comment
+ - <time datetime="2023-03-27T17:07:54Z" data-local="time-ago">March 27, 2023 17:07</time>
+</div>
+
+
+
+  </body>
+</html>
+
+----==_mimepart_6421cd6eab34e_2d0161a8151--
+
+[ActiveJob] [ActionMailer::MailDeliveryJob] [06078a3b-951a-4af5-ae61-683acc29e65b] Performed ActionMailer::MailDeliveryJob (Job ID: 06078a3b-951a-4af5-ae61-683acc29e65b) from Async(default) in 4068.62ms
+Unsubscribing from channel: {"channel":"Turbo::StreamsChannel","signed_stream_name":"IloybGtPaTh2Y0hKdmFtVmpkQzFvYVhOMGIzSjVMMUJ5YjJwbFkzUXZNUSI=--1fa711f1d3184cc7b243f25ef8150fece8b3361e7dc3c2ab2d351144ab9383d8"}
+Turbo::StreamsChannel stopped streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ
+Turbo::StreamsChannel is transmitting the subscription confirmation
+Turbo::StreamsChannel is streaming from Z2lkOi8vcHJvamVjdC1oaXN0b3J5L1Byb2plY3QvMQ

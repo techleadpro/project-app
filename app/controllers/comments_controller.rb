@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
 before_action :set_project
 
 	def create
- 		comment = @list_item.comments.create params.required(:comment).permit(:description)
+ 		comment = @project.comments.create params.required(:comment).permit(:description)
  		CommentsMailer.submitted(comment).deliver_later # deliver enables aync job queue
- 		redirect_to @list_item
+ 		redirect_to @project
 	end
 
 	private
