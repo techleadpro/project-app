@@ -74,7 +74,7 @@ type in command prompt: rspec
 >heroku run rails db:migrate
 
 
-# Project-manager Authentication
+# Project-App Authentication
 
 User Login details
 
