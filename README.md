@@ -4,6 +4,7 @@ This is ProjectManager app used for creating projects and having conversations u
 
 
 Project manager 
+
 Front page
 ![Screenshot 2023-03-28 at 19-56-41 ProjectManager com Creat amazing projects](https://user-images.githubusercontent.com/129011467/228337046-12555e41-0632-4064-b0ba-dd417607f3d7.png)
 
@@ -65,14 +66,14 @@ type in command prompt: rspec
 
 >heroku create
 
->heroku rename todo-app
+>heroku rename project-app
 
 >git push heroku main
 
 >heroku run rails db:migrate
 
 
-# todo-app-jwt-authentication
+# project-app-authentication
 
 User Login details
 
