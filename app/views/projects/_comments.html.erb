@@ -1,9 +1,14 @@
-<h2>Comments </h2>
 
+
+<div class="container">
+<strong>Conversation:</strong>
 <div id="comments">
 <%# Expands to render partial "comments/comment", collection: project.comments %>
 <%= render project.comments %>
 
 </div>
 
+
 <%= render "comments/new", project: project %>
+
+</div>

@@ -1,9 +1,26 @@
-<%= form_with model: [ project, Comment.new ] do |form| %>
-Your comment:<br>
-<div>
-<%= form.text_area :description, size: "20x5" %>
+<div class="dropdown-divider"></div>
+<br>
+<br>
+<br>
+
+
+<div class="center">
+<h5>Comments</h5>
+
 </div>
+<div class="dropdown-divider"></div>
+<%= form_with model: [ project, Comment.new ] do |form| %>
+Leave a comment:<br>
+
+<div class="dropdown-divider"></div>
+
+<div>
+<%= form.rich_text_area :description, size: "20x5", class: "form-control" %>
+</div>
+<br>
  <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-success" %>
  </div>
 <% end %>
+
+<div class="dropdown-divider"></div>
